@@ -7,7 +7,6 @@ import { Request, Response } from "express";
 import { startRedisClient, redis } from "@/db/redis";
 import session from "express-session";
 import RedisStore from "connect-redis";
-import exp from "constants";
 
 export const appConfig = (app: Application) => {
   app.use(express.json({ limit: "30mb" }));
