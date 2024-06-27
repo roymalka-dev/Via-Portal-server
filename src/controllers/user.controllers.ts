@@ -1,5 +1,5 @@
-import logger from "@/logger/logger";
-import { userServices } from "@/services/user.service";
+import logger from "../logger/logger";
+import { userServices } from "../services/user.service";
 import { Request, Response } from "express";
 
 export const userControllers = {

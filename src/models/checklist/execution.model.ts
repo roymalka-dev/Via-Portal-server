@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import mongoose, { Schema, Document, Types } from "mongoose";
 
 interface IChecklistExecutionItem extends Document {

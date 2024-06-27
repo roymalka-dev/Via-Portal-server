@@ -1,6 +1,6 @@
-import { authorityValidator } from "@/middleware/authorityValidator";
+import { authorityValidator } from "../middleware/authorityValidator";
 import express, { RequestHandler } from "express";
-import { EndpointType } from "types/routes.types";
+import { EndpointType } from "../types/routes.types";
 /**
  * Dynamically creates and configures endpoints for an Express router based on the provided configurations.
  *

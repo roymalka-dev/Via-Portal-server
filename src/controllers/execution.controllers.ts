@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { Types } from "mongoose";
-import { executionServices } from "@/services/execution.services";
-import { ChecklistItem } from "@/models/checklist/item.model";
-import { explorerServices } from "@/services/explorer.services";
-import logger from "@/logger/logger";
+import { executionServices } from "..//services/execution.services";
+import { ChecklistItem } from "../models/checklist/item.model";
+import { explorerServices } from "../services/explorer.services";
+import logger from "../logger/logger";
 import { ObjectId } from "mongodb";
-import { userServices } from "@/services/user.service";
+import { userServices } from "../services/user.service";
 
 const checklistFolderId = "66729b81627402502bbeada1";
 

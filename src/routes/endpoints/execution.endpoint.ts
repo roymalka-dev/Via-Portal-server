@@ -1,7 +1,7 @@
-import { executionControllers } from "@/controllers/execution.controllers";
-import { validateRequest } from "@/middleware/validator";
-import { EndpointType } from "@/types/routes.types";
-import { executionValidationSchemas } from "@/validations/execution.validations";
+import { executionControllers } from "../../controllers/execution.controllers";
+import { validateRequest } from "../../middleware/validator";
+import { EndpointType } from "../../types/routes.types";
+import { executionValidationSchemas } from "../../validations/execution.validations";
 
 export const executionEndpoints: EndpointType[] = [
   {

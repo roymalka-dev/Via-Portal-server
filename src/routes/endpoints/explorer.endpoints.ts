@@ -1,7 +1,7 @@
-import { explorerControllers } from "@/controllers/explorer.controllers";
-import { validateRequest } from "@/middleware/validator";
-import { EndpointType } from "@/types/routes.types";
-import { explorerValidationSchemas } from "@/validations/explorer.validations";
+import { explorerControllers } from "../../controllers/explorer.controllers";
+import { validateRequest } from "../../middleware/validator";
+import { EndpointType } from "../../types/routes.types";
+import { explorerValidationSchemas } from "../../validations/explorer.validations";
 
 export const explorerEndpoints: EndpointType[] = [
   {

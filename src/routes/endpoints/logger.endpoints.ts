@@ -1,4 +1,4 @@
-import { loggerControllers } from "@/controllers/logger.controllers";
+import { loggerControllers } from "../../controllers/logger.controllers";
 import { EndpointType } from "../../types/routes.types";
 
 export const loggerEndpoints: EndpointType[] = [

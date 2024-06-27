@@ -1,4 +1,4 @@
-import { validateUserAuth } from "@/utils/auth.utils";
+import { validateUserAuth } from "../utils/auth.utils";
 import { RequestHandler } from "express";
 
 declare module "express-session" {

@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { OAuth2Client } from "google-auth-library";
-import { userServices } from "@/services/user.service";
-import logger from "@/logger/logger";
+import { userServices } from "../services/user.service";
+import logger from "../logger/logger";
 
 declare module "express-session" {
   interface SessionData {

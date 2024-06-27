@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { explorerServices } from "@/services/explorer.services";
+import { explorerServices } from "../services/explorer.services";
 import mongoose from "mongoose";
-import logger from "@/logger/logger";
+import logger from "../logger/logger";
 
 export const explorerControllers = {
   // Controller to get a root directory by name

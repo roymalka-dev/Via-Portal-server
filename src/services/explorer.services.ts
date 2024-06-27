@@ -1,6 +1,6 @@
 import mongoose, { Types, mongo } from "mongoose";
-import { Folder, IFolder } from "@/models/explorer/folder.model";
-import { File, IFile } from "@/models/explorer/file.model";
+import { Folder, IFolder } from "../models/explorer/folder.model";
+import { File, IFile } from "../models/explorer/file.model";
 
 export const explorerServices = {
   // Get a root directory by name

@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { RouteType } from "types/routes.types";
+import { RouteType } from "../types/routes.types";
 import { createEndpoints } from "./endpoint";
 
 /**

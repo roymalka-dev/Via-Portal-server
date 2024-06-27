@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { ChecklistItem, IChecklistItem } from "@/models/checklist/item.model";
-import { Tag } from "@/models/checklist/tag.model";
+import { ChecklistItem, IChecklistItem } from "../models/checklist/item.model";
+import { Tag } from "../models/checklist/tag.model";
 
 export const checklistServices = {
   // Get all checklist items

@@ -1,4 +1,4 @@
-import { IUser, User } from "@/models/users/user.model";
+import { IUser, User } from "../models/users/user.model";
 
 const userServices = {
   getUserByMail: async (email: string): Promise<IUser | null> => {

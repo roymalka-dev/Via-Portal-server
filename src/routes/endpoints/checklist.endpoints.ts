@@ -1,8 +1,7 @@
-import { checklistControllers } from "@/controllers/checklist.controllers";
-import { explorerControllers } from "@/controllers/explorer.controllers";
-import { validateRequest } from "@/middleware/validator";
-import { EndpointType } from "@/types/routes.types";
-import { checklistValidationSchemas } from "@/validations/checklist.validations";
+import { checklistControllers } from "../../controllers/checklist.controllers";
+import { validateRequest } from "../../middleware/validator";
+import { EndpointType } from "../../types/routes.types";
+import { checklistValidationSchemas } from "../../validations/checklist.validations";
 
 /**
  * Endpoints related to checklist within the application.

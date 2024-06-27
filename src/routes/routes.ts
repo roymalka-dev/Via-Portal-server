@@ -1,8 +1,8 @@
-import { RouteType } from "@/types/routes.types";
+import { RouteType } from "../types/routes.types";
 import { checklistEndpoints } from "./endpoints/checklist.endpoints";
 import { explorerEndpoints } from "./endpoints/explorer.endpoints";
 import { executionEndpoints } from "./endpoints/execution.endpoint";
-import { authenticator } from "@/middleware/authenticator";
+import { authenticator } from "../middleware/authenticator";
 import { userEndpoints } from "./endpoints/user.endpoints";
 import { loggerEndpoints } from "./endpoints/logger.endpoints";
 

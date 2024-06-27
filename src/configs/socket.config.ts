@@ -1,4 +1,4 @@
-import { socketControllers } from "@/controllers/socket.controllers";
+import { socketControllers } from "../controllers/socket.controllers";
 import { Server } from "socket.io";
 
 export const socketConfig = (server: any) => {

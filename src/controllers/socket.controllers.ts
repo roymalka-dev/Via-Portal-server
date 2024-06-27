@@ -1,4 +1,4 @@
-import { executionServices } from "@/services/execution.services";
+import { executionServices } from "../services/execution.services";
 import { Types } from "mongoose";
 
 interface ICard {

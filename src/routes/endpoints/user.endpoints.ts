@@ -1,7 +1,7 @@
-import { userControllers } from "@/controllers/user.controllers"; // Make sure the path is correct
-import { validateRequest } from "@/middleware/validator";
-import { EndpointType } from "@/types/routes.types";
-import { userValidationSchemas } from "@/validations/user.validations";
+import { userControllers } from "../../controllers/user.controllers";
+import { validateRequest } from "../../middleware/validator";
+import { EndpointType } from "../../types/routes.types";
+import { userValidationSchemas } from "../../validations/user.validations";
 
 export const userEndpoints: EndpointType[] = [
   {

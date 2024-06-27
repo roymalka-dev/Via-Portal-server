@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
-import { ChecklistExecution } from "@/models/checklist/execution.model";
-import { ChecklistItem } from "@/models/checklist/item.model";
+import { ChecklistExecution } from "../models/checklist/execution.model";
+import { ChecklistItem } from "../models/checklist/item.model";
 
 export const executionServices = {
   createExecution: async (data: {

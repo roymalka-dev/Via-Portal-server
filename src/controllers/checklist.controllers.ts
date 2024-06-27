@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { checklistServices } from "@/services/checklist.services";
+import { checklistServices } from "../services/checklist.services";
 import mongoose from "mongoose";
-import logger from "@/logger/logger";
+import logger from "../logger/logger";
 
 export const checklistControllers = {
   // Controller to get all checklist items
