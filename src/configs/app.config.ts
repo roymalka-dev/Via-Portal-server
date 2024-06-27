@@ -7,15 +7,10 @@ import { Request, Response } from "express";
 import { startRedisClient, redis } from "@/db/redis";
 import session from "express-session";
 import RedisStore from "connect-redis";
+import exp from "constants";
 
 export const appConfig = (app: Application) => {
-  app.use((req, res, next) => {
-    if (req.path.startsWith("/api/upload")) {
-      next();
-    } else {
-      express.json({ limit: "30mb" })(req, res, next);
-    }
-  });
+  app.use(express.json({ limit: "30mb" }));
 
   app.use(bodyParser.json({ limit: "30mb" }));
   app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
