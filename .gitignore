@@ -6,7 +6,7 @@ dist/
 build/
 
 # TypeScript compiled files (if not output to dist/)
-*.js
+
 *.js.map
 *.d.ts
 
