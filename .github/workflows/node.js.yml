@@ -23,9 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-            npm ci
-            npm install typescript
-      
+        npm ci
+        npm install typescript
 
     - name: Set up environment variables
       run: |
