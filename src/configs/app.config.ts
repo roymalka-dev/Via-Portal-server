@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import { Request, Response } from "express";
-import { startRedisClient, redis } from "@/db/redis";
+import { startRedisClient, redis } from "../db/redis";
 import session from "express-session";
 import RedisStore from "connect-redis";
 
