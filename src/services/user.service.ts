@@ -54,9 +54,12 @@ const userServices = {
       throw new Error(`Error getting all users: ${error}`);
     }
   },
-  getAllUsersAsAssignees: async (): Promise<string[]> => {
+  getAllUsersAsAssignees: async (
+    assigneesFilter?: (a: any) => void
+  ): Promise<string[]> => {
     try {
-      const users = await User.find({}).exec();
+      let users = await User.find({}).exec();
+      assigneesFilter ? (users = users.filter(assigneesFilter)) : users;
       return users.map((user) => `${user.firstName} ${user.lastName}`);
     } catch (error) {
       throw new Error(`Error getting all users as assignee: ${error}`);

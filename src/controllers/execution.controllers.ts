@@ -66,7 +66,11 @@ export const executionControllers = {
         new Types.ObjectId(id)
       );
 
-      const assignees = await userServices.getAllUsersAsAssignees();
+      const assigneesFilter = (a: any) => a.authorizations.includes("EXECUTER");
+
+      const assignees = await userServices.getAllUsersAsAssignees(
+        assigneesFilter
+      );
 
       return res.status(200).json({ data: { execution, assignees } });
     } catch (error: any) {
