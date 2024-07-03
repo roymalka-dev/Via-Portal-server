@@ -10,13 +10,14 @@ export const socketConfig = (server: any) => {
   });
 
   io.on("connection", (socket) => {
-    const id = socket.handshake.query.id;
+    const { id } = socket.handshake.query;
     if (id) {
       socket.join(id);
     }
 
     socketControllers.cardLocationChange(socket);
     socketControllers.cardAssigneeChange(socket);
+    socketControllers.onlineAssigneesChange(io, socket);
     socketControllers.disconnect(socket);
   });
 };

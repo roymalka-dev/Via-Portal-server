@@ -8,6 +8,13 @@ interface ICard {
   index: number;
 }
 
+let connectedUsers: { [key: string]: { [socketId: string]: string } } = {}; // Object to track connected users per execution ID
+
+const onlineAssigneesChange = async (io: any, execId: string) => {
+  const users = Object.values(connectedUsers[execId] || {});
+  io.to(execId).emit("connectedUsers", users);
+};
+
 export const socketControllers = {
   cardLocationChange: (socket: any) => {
     socket.on("cardLocationChange", async (card: ICard) => {
@@ -17,7 +24,7 @@ export const socketControllers = {
         if (id) {
           const execId = id;
           const cardId = card._id;
-          socket.broadcast.to(id).emit("cardLocationChange", card);
+          socket.broadcast.to(execId).emit("cardLocationChange", card);
 
           await executionServices.editItemStatus(
             execId as Types.ObjectId,
@@ -41,7 +48,7 @@ export const socketControllers = {
             const execId = id;
 
             socket.broadcast
-              .to(id)
+              .to(execId)
               .emit("cardAssigneeChange", data.assignee, data.cardId);
 
             await executionServices.editItemAssignee(
@@ -56,6 +63,48 @@ export const socketControllers = {
       }
     );
   },
+  onlineAssigneesChange: async (io: any, socket: any) => {
+    const { user, id } = socket.handshake.query;
 
-  disconnect: (socket: any) => {},
+    if (user && id) {
+      const execId = id;
+      const userName = user.split("@")[0].split(".").join(" ");
+
+      if (!connectedUsers[execId]) {
+        connectedUsers[execId] = {};
+      }
+
+      connectedUsers[execId][socket.id] = userName;
+      await onlineAssigneesChange(io, execId);
+    }
+
+    socket.on("disconnect", async () => {
+      const { id } = socket.handshake.query;
+      if (id) {
+        const execId = id;
+        if (connectedUsers[execId]) {
+          delete connectedUsers[execId][socket.id];
+          if (Object.keys(connectedUsers[execId]).length === 0) {
+            delete connectedUsers[execId];
+          }
+          await onlineAssigneesChange(io, execId);
+        }
+      }
+    });
+  },
+  disconnect: (socket: any) => {
+    socket.on("disconnect", async () => {
+      const { id } = socket.handshake.query;
+      if (id) {
+        const execId = id;
+        if (connectedUsers[execId]) {
+          delete connectedUsers[execId][socket.id];
+          if (Object.keys(connectedUsers[execId]).length === 0) {
+            delete connectedUsers[execId];
+          }
+          await onlineAssigneesChange(socket, execId);
+        }
+      }
+    });
+  },
 };

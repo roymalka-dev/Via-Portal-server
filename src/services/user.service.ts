@@ -2,6 +2,7 @@ import { IUser, User } from "../models/users/user.model";
 
 const userServices = {
   getUserByMail: async (email: string): Promise<IUser | null> => {
+    if (!email) throw new Error("No email provided");
     try {
       return await User.findOne({ email }).exec();
     } catch (error) {
@@ -10,6 +11,7 @@ const userServices = {
   },
 
   getUserById: async (id: string): Promise<IUser | null> => {
+    if (!id) throw new Error("No ID provided");
     try {
       return await User.findById(id).exec();
     } catch (error) {
