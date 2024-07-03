@@ -28,6 +28,20 @@ export const checklistEndpoints: EndpointType[] = [
     authority: "ADMIN",
   },
   {
+    name: "import-items",
+    method: "post",
+    path: "/import-items",
+    controller: checklistControllers.importItems,
+    middleware: [
+      validateRequest(
+        checklistValidationSchemas.bodySchemas.importItems,
+        "body"
+      ),
+    ],
+    authority: "ADMIN",
+  },
+
+  {
     name: "edit-item",
     method: "put",
     path: "/edit-item/:id",

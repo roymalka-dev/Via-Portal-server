@@ -41,6 +41,35 @@ export const checklistValidationSchemas = {
         )
         .required("Tags are required"),
     }),
+    importItems: yup.object().shape({
+      items: yup
+        .array()
+        .of(
+          yup.object().shape({
+            name: yup
+              .string()
+              .required("Name is required")
+              .min(3, "Name is too short")
+              .max(50, "Name is too long"),
+            description: yup
+              .string()
+              .required("Description is required")
+              .min(3, "Description is too short")
+              .max(256, "Description is too long"),
+            url: yup.string().url().required("URL is required"),
+            tags: yup
+              .array()
+              .of(
+                yup
+                  .string()
+                  .min(2, "Tag name too short")
+                  .max(50, "Tag name too long")
+              )
+              .required("Tags are required"),
+          })
+        )
+        .required("Items are required"),
+    }),
   },
   paramSchemas: {
     removeItem: yup.object().shape({

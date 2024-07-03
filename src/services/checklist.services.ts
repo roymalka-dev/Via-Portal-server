@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { ChecklistItem, IChecklistItem } from "../models/checklist/item.model";
 import { Tag } from "../models/checklist/tag.model";
+import { add } from "winston";
 
 export const checklistServices = {
   // Get all checklist items
@@ -22,6 +23,21 @@ export const checklistServices = {
     } catch (error) {
       throw new Error(`Error adding item: ${error}`);
     }
+  },
+
+  async addMultipleItems(items: any[]): Promise<IChecklistItem[]> {
+    const addedItems: IChecklistItem[] = [];
+
+    for (const item of items) {
+      // Ensure tags are added before adding the item
+      for (const tag of item.tags) {
+        await this.addChecklistTag(tag);
+      }
+      const addedItem = await this.addItem(item);
+      addedItems.push(addedItem);
+    }
+
+    return addedItems;
   },
 
   // Remove a checklist item by ID
@@ -62,6 +78,10 @@ export const checklistServices = {
   },
   async addChecklistTag(name: string) {
     try {
+      const existTag = await Tag.findOne({ name });
+      if (existTag) {
+        return;
+      }
       const newTag = new Tag({ name });
       return await newTag.save();
     } catch (error) {

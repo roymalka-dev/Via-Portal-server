@@ -10,7 +10,7 @@ import * as yup from "yup";
  * @returns An Express middleware for request validation.
  */
 export const validateRequest = (
-  schema: yup.ObjectSchema<any, any, any, any>,
+  schema: yup.ObjectSchema<any>,
   property: "body" | "params" | "query"
 ): RequestHandler => {
   return async (req, res, next) => {

@@ -34,6 +34,20 @@ export const checklistControllers = {
       res.status(500).json({ message: error });
     }
   },
+  importItems: async (req: Request, res: Response) => {
+    const { items } = req.body;
+    try {
+      const response = await checklistServices.addMultipleItems(items);
+      res.status(201).json({ data: response });
+    } catch (error: any) {
+      logger.error(`importItems`, {
+        tag: "error",
+        location: "checklist.controllers.ts",
+        error: req?.session?.user + " " + error.message,
+      });
+      res.status(500).json({ message: error });
+    }
+  },
 
   // Controller to remove a checklist item by ID
   removeItem: async (req: Request, res: Response) => {
