@@ -227,8 +227,6 @@ export const explorerControllers = {
   moveFolder: async (req: Request, res: Response) => {
     const { folderId, newParentId } = req.body;
 
-    console.log(folderId, newParentId);
-
     if (
       !mongoose.Types.ObjectId.isValid(folderId) ||
       !mongoose.Types.ObjectId.isValid(newParentId)

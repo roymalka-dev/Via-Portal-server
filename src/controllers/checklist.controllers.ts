@@ -131,7 +131,6 @@ export const checklistControllers = {
   },
   addTag: async (req: Request, res: Response) => {
     const { name } = req.body;
-    console.log(name);
     try {
       const tag = await checklistServices.addChecklistTag(name);
       return res.status(201).json({ data: tag });

@@ -148,7 +148,6 @@ export const explorerServices = {
   async removeFile(id: mongoose.Types.ObjectId): Promise<void> {
     try {
       const file = await File.findById(id);
-      console.log(file);
       if (!file) throw new Error("File not found");
 
       const dataSchemaType = file.dataSchemaType as string;

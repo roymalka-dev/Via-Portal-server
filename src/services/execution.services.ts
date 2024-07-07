@@ -6,6 +6,7 @@ export const executionServices = {
   createExecution: async (data: {
     itemIds: Types.ObjectId[];
     name: string;
+    tags: string[];
   }) => {
     const checklistItems = await ChecklistItem.find({
       _id: { $in: data.itemIds },
@@ -31,7 +32,7 @@ export const executionServices = {
       name: data.name,
       description: "No description", // Default value
       url: "No URL", // Default value
-      tags: [], // Default value
+      tags: data.tags, // Default value
       assignee: "Unassigned", // Default value
       dueDate: new Date(), // Default value
       status: "pending", // Default value

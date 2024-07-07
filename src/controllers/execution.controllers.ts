@@ -34,6 +34,7 @@ export const executionControllers = {
       const executionData = {
         itemIds,
         name,
+        tags,
       };
 
       const execution = await executionServices.createExecution(executionData);
