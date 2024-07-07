@@ -123,4 +123,56 @@ export const executionControllers = {
       return res.status(500).json({ message: "Internal server error" });
     }
   },
+  getEditExecutionItems: async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+
+      const existIds = await executionServices.getEditExecutionItems(id);
+
+      const allItems = await ChecklistItem.find({}).exec();
+
+      return res.status(200).json({ data: { existIds, allItems } });
+    } catch (error: any) {
+      logger.error("getEditExecutionItems", {
+        tag: "error",
+        location: "execution.controllers.ts",
+        error: req?.session?.user + " " + error.message,
+      });
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  addItemToExecution: async (req: Request, res: Response) => {
+    const { executionId, itemId } = req.body;
+
+    try {
+      const updatedExecution = await executionServices.addItemToExecution(
+        executionId,
+        itemId
+      );
+      return res.status(200).json(updatedExecution);
+    } catch (error: any) {
+      logger.error("addItemToExecution", {
+        tag: "error",
+        location: "execution.controllers.ts",
+        error: req?.session?.user + " " + error.message,
+      });
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
+  removeItemFromExecution: async (req: Request, res: Response) => {
+    const { executionId, itemId } = req.body;
+
+    try {
+      await executionServices.deleteExecutionItem(executionId, itemId);
+      return res.status(200).json({ data: "succes" });
+    } catch (error: any) {
+      logger.error("deleteExecutionItem", {
+        tag: "error",
+        location: "execution.controllers.ts",
+        error: req?.session?.user + " " + error.message,
+      });
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };

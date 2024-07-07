@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 import { ChecklistExecution } from "../models/checklist/execution.model";
 import { ChecklistItem } from "../models/checklist/item.model";
+import { exec } from "child_process";
 
 export const executionServices = {
   createExecution: async (data: {
@@ -93,6 +94,64 @@ export const executionServices = {
     item.assignee = assignee;
 
     await execution.save();
+    return execution;
+  },
+  getEditExecutionItems: async (executionId: string) => {
+    const execution = await ChecklistExecution.findById(executionId);
+
+    if (!execution) {
+      throw new Error("Execution not found");
+    }
+
+    const ids = execution.items.map((item: any) => item.item._id);
+    return ids;
+  },
+
+  deleteExecutionItem: async (executionId: string, itemId: string) => {
+    const execution = await ChecklistExecution.findById(executionId);
+
+    if (!execution) {
+      throw new Error("Execution not found");
+    }
+
+    const itemIndex = execution.items.findIndex((item: any) =>
+      item.item._id.equals(itemId)
+    );
+
+    if (itemIndex === -1) {
+      throw new Error("Item not found");
+    }
+
+    execution.items.splice(itemIndex, 1);
+
+    await execution.save();
+
+    return execution;
+  },
+
+  addItemToExecution: async (executionId: string, itemId: string) => {
+    const execution = await ChecklistExecution.findById(executionId);
+    const item = await ChecklistItem.findById(itemId);
+
+    if (!execution || !item) {
+      throw new Error("Execution or item not found");
+    }
+
+    const newItem = {
+      item: item._id,
+      name: item.name,
+      description: item.description,
+      url: item.url,
+      tags: item.tags,
+      assignee: "Unassigned",
+      timestamp: new Date(),
+      status: "pending",
+    };
+
+    execution.items.push(newItem as any);
+
+    await execution.save(); // Save the updated execution
+
     return execution;
   },
 };

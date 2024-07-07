@@ -30,4 +30,38 @@ export const executionEndpoints: EndpointType[] = [
     ],
     authority: "USER",
   },
+  {
+    name: "get-edit-execution-items",
+    method: "get",
+    path: "/get-edit-execution-items/:id",
+    controller: executionControllers.getEditExecutionItems,
+    middleware: [],
+    authority: "ADMIN",
+  },
+  {
+    name: "add-item-to-execution",
+    method: "post",
+    path: "/add-item-to-execution",
+    controller: executionControllers.addItemToExecution,
+    middleware: [
+      validateRequest(
+        executionValidationSchemas.bodySchemas.addItemToExecution,
+        "body"
+      ),
+    ],
+    authority: "ADMIN",
+  },
+  {
+    name: "remove-item-from-execution",
+    method: "post",
+    path: "/remove-item-from-execution",
+    controller: executionControllers.removeItemFromExecution,
+    middleware: [
+      validateRequest(
+        executionValidationSchemas.bodySchemas.removeItemFromExecution,
+        "body"
+      ),
+    ],
+    authority: "ADMIN",
+  },
 ];

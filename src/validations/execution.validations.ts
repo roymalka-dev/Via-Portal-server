@@ -1,3 +1,5 @@
+import { exec } from "child_process";
+import { add } from "winston";
 import * as yup from "yup";
 
 export const executionValidationSchemas = {
@@ -32,6 +34,14 @@ export const executionValidationSchemas = {
         .required("Assignee is required")
         .min(3, "Assignee is too short")
         .max(50, "Assignee is too long"),
+    }),
+    addItemToExecution: yup.object().shape({
+      executionId: yup.string().required("Execution ID is required"),
+      itemId: yup.string().required("Item ID is required"),
+    }),
+    removeItemFromExecution: yup.object().shape({
+      executionId: yup.string().required("Execution ID is required"),
+      itemId: yup.string().required("Item ID is required"),
     }),
   },
   paramSchemas: {
