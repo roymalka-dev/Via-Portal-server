@@ -1,4 +1,4 @@
-import { scopingControllers } from "@/controllers/scoping.controllers";
+import { scopingControllers } from "../../controllers/scoping.controllers";
 import { EndpointType } from "../../types/routes.types";
 
 export const scopingEndpoints: EndpointType[] = [
