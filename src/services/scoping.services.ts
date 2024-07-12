@@ -23,7 +23,10 @@ export const scopingServices = {
     const config = {
       auth: {
         username: "itsroymalka@icloud.com",
-        password: process.env.CONFLUENCE_API_TOKEN || "",
+        password:
+          process.env.NODE_ENV === "DEV"
+            ? process.env.CONFLUENCE_API_TOKEN_DEV || ""
+            : process.env.CONFLUENCE_API_TOKEN_PROD || "",
       },
     };
 
@@ -43,6 +46,7 @@ export const scopingServices = {
       const response = await axios.get(
         `https://via-explorer-api.roymalka.dev/api/v1/public/get-city-data/`
       );
+      return response;
     } catch (error: any) {
       throw new Error(`Error getting city data: ${error}`);
     }
