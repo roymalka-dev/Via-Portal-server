@@ -5,6 +5,7 @@ import { executionEndpoints } from "./endpoints/execution.endpoint";
 import { authenticator } from "../middleware/authenticator";
 import { userEndpoints } from "./endpoints/user.endpoints";
 import { loggerEndpoints } from "./endpoints/logger.endpoints";
+import { scopingEndpoints } from "./endpoints/scoping.endpoints";
 
 export const routes: RouteType[] = [
   {
@@ -36,5 +37,11 @@ export const routes: RouteType[] = [
     path: "/logger",
     endpoints: loggerEndpoints,
     middleware: [authenticator],
+  },
+  {
+    name: "scoping",
+    path: "/scoping",
+    endpoints: scopingEndpoints,
+    middleware: [],
   },
 ];

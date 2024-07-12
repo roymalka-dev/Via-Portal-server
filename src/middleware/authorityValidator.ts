@@ -13,6 +13,8 @@ export const authorityValidator = (
 ): RequestHandler => {
   return (req, res, next) => {
     try {
+      if (requiredAuthority === "PUBLIC") return next();
+
       // Ensure the session exists
       if (!req.session || !req.session.user || !req.session.authorization) {
         return res.status(401).send({ error: "Unauthorized", status: 401 });
