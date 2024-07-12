@@ -22,7 +22,10 @@ export const scopingServices = {
 
     const config = {
       auth: {
-        username: "itsroymalka@icloud.com",
+        username:
+          process.env.NODE_ENV === "DEV"
+            ? "itsroymalka@icloud.com"
+            : "roy.malka@ridewithvia.com",
         password:
           process.env.NODE_ENV === "DEV"
             ? process.env.CONFLUENCE_API_TOKEN_DEV || ""
