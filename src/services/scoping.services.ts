@@ -35,7 +35,9 @@ export const scopingServices = {
 
     try {
       const response = await axios.post(
-        "https://itsroymalka.atlassian.net/wiki/rest/api/content",
+        process.env.NODE_ENV
+          ? "https://itsroymalka.atlassian.net/wiki/rest/api/content"
+          : "https://ridewithvia.atlassian.net/wiki/rest/api/content",
         data,
         config
       );

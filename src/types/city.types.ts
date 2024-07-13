@@ -34,6 +34,7 @@ export interface CityConfigurations {
   renew_series_enabled: boolean;
   shown_recurring_series_types: string[];
   block_edit_ride_by_rider: boolean;
+  allow_rider_call_through?: boolean;
   prescheduling_arrival_minutes_cant_order: number;
   prescheduling_arrival_minutes_cant_order_admin: number;
   prescheduling_minutes_cant_order_admin: number;
