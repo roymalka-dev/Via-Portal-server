@@ -1,6 +1,6 @@
-import { shiftControllers } from "@/controllers/shift.controllers";
+import { shiftControllers } from "../../controllers/shift.controllers";
 import { EndpointType } from "../../types/routes.types";
-import { authenticator } from "@/middleware/authenticator";
+import { authenticator } from "../../middleware/authenticator";
 
 export const shiftEndpoints: EndpointType[] = [
   {

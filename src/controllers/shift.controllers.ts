@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { calendars } from "../data/calendars";
-import { shiftServices } from "@/services/shift.services";
-import { formatShifts } from "@/utils/data.utils";
+import { shiftServices } from "../services/shift.services";
+import { formatShifts } from "../utils/data.utils";
 
 interface CalendarEvent {
   id: string;
