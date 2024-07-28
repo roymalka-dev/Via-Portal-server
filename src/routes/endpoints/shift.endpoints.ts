@@ -8,7 +8,7 @@ export const shiftEndpoints: EndpointType[] = [
     method: "get",
     path: "/get-google-calendar-shifts",
     controller: shiftControllers.getAllCalendarEvents,
-    middleware: [],
-    authority: "PUBLIC",
+    middleware: [authenticator],
+    authority: "USER",
   },
 ];
