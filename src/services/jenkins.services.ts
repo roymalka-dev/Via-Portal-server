@@ -1,4 +1,4 @@
-import logger from "@/logger/logger";
+import logger from "../logger/logger";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
