@@ -1,4 +1,4 @@
-import { jenkinsControllers } from "@/controllers/jenkins.controllers";
+import { jenkinsControllers } from "../../controllers/jenkins.controllers";
 import { EndpointType } from "../../types/routes.types";
 import { authenticator } from "../../middleware/authenticator";
 export const jenkinsEndpoints: EndpointType[] = [
