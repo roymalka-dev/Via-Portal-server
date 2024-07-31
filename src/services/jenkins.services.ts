@@ -19,7 +19,7 @@ export const jenkinsServices = {
 
     try {
       const response = await axios.post(
-        `${JENKINS_ISR_URL}/view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`,
+        `${JENKINS_ISR_URL}view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`,
         params,
         {
           auth: {
