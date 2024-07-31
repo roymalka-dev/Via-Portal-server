@@ -18,6 +18,10 @@ export const jenkinsServices = {
     params.append("configs", configString);
     params.append("sheet_url", CITY_CHECK_JOB_URL);
 
+    console.log(
+      `${JENKINS_ISR_URL}view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`
+    );
+
     try {
       const response = await axios.post(
         `${JENKINS_ISR_URL}view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`,
@@ -41,7 +45,7 @@ export const jenkinsServices = {
         error: error.message,
       });
 
-      // console.log("Error triggering Jenkins job:", error);
+      console.log("Error triggering Jenkins job:", error.message);
       throw error;
     }
   },
