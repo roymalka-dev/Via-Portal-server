@@ -18,14 +18,6 @@ export const jenkinsServices = {
     params.append("configs", configString);
     params.append("sheet_url", CITY_CHECK_JOB_URL);
 
-    console.log("Triggering Jenkins job with params:", params);
-    console.log(
-      "Jenkins URL:",
-      `${JENKINS_ISR_URL}view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`
-    );
-    console.log("Jenkins user:", JENKINS_USER);
-    console.log("Jenkins token:", JENKINS_TOKEN);
-
     try {
       const response = await axios.post(
         `${JENKINS_ISR_URL}view/arch/job/${JENKINS_JOB_NAME}/job/${JENKINS_JOB_SUB_PATH}/buildWithParameters`,
@@ -38,8 +30,10 @@ export const jenkinsServices = {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
+          timeout: 60000,
         }
       );
+      console.log(response.data);
     } catch (error: any) {
       logger.error("cityCheckJob", {
         tag: "error",
