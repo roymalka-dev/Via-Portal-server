@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { google } from "googleapis";
 export const scopingServices = {
   async createConfluencePage(
     title: string,
@@ -54,6 +54,50 @@ export const scopingServices = {
       return response;
     } catch (error: any) {
       throw new Error(`Error getting city data: ${error}`);
+    }
+  },
+  getCityCheckJobCSV: async (cityId: string): Promise<any> => {
+    const sheetId = process.env.CITY_CHECK_JOB_SHEET_ID || "";
+    const apiKey = process.env.GOOGLE_API_KEY || "";
+
+    const arrayToCSV = (data: any[][]): string => {
+      const escapeValue = (value: any): string => {
+        if (typeof value === "string") {
+          // Escape quotes by doubling them
+          value = value.replace(/"/g, '""');
+          // If the value contains a comma, line break, or double-quote, enclose it in double quotes
+          if (value.search(/("|,|\n)/g) >= 0) {
+            value = `"${value}"`;
+          }
+        }
+        return value;
+      };
+
+      return data.map((row) => row.map(escapeValue).join(",")).join("\n");
+    };
+
+    const sheets = google.sheets({
+      version: "v4",
+      auth: apiKey,
+    });
+
+    try {
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: `${cityId}-`,
+      });
+
+      const rows = response.data.values;
+      if (!rows || rows.length === 0) {
+        console.log("No data found.");
+        return;
+      }
+
+      const csvData = arrayToCSV(rows);
+      return csvData;
+    } catch (error) {
+      console.error("Error fetching tab data:", error);
+      throw error;
     }
   },
 };

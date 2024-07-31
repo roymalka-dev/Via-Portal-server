@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { scopingServices } from "../services/scoping.services";
+import logger from "@/logger/logger";
 
 export const scopingControllers = {
   createConfluencePage: async (req: Request, res: Response) => {
@@ -14,7 +15,26 @@ export const scopingControllers = {
       );
       res.status(201).json(result);
     } catch (error: any) {
-      console.log(error);
+      logger.error("createConfluencePage", {
+        tag: "error",
+        location: "scoping.controllers.ts: createConfluencePage",
+        error: req?.session?.user + " " + error.message,
+      });
+      res.status(500).json({ message: error.message });
+    }
+  },
+  getCityCheckJobCSV: async (req: Request, res: Response) => {
+    const { cityId } = req.body;
+
+    try {
+      const csvData = await scopingServices.getCityCheckJobCSV(cityId);
+      return res.status(200).json(csvData);
+    } catch (error: any) {
+      logger.error("getCityCheckJobCSV", {
+        tag: "error",
+        location: "scoping.controllers.ts: getCityCheckJobCSV",
+        error: req?.session?.user + " " + error.message,
+      });
       res.status(500).json({ message: error.message });
     }
   },

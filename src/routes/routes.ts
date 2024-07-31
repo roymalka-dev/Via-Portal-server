@@ -7,6 +7,7 @@ import { userEndpoints } from "./endpoints/user.endpoints";
 import { loggerEndpoints } from "./endpoints/logger.endpoints";
 import { scopingEndpoints } from "./endpoints/scoping.endpoints";
 import { shiftEndpoints } from "./endpoints/shift.endpoints";
+import { jenkinsEndpoints } from "./endpoints/jenkins.endpoints";
 
 export const routes: RouteType[] = [
   {
@@ -49,6 +50,12 @@ export const routes: RouteType[] = [
     name: "shift",
     path: "/shift",
     endpoints: shiftEndpoints,
+    middleware: [],
+  },
+  {
+    name: "jenkins",
+    path: "/jenkins",
+    endpoints: jenkinsEndpoints,
     middleware: [],
   },
 ];
