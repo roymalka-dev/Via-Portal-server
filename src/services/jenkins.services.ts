@@ -31,7 +31,6 @@ export const jenkinsServices = {
           },
         }
       );
-      console.log("Jenkins job triggered:", response.data);
     } catch (error) {
       console.error("Error triggering Jenkins job:", error);
       throw error;
