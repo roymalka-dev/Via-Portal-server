@@ -1,3 +1,4 @@
+import logger from "@/logger/logger";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
@@ -31,8 +32,14 @@ export const jenkinsServices = {
           },
         }
       );
-    } catch (error) {
-      console.error("Error triggering Jenkins job:", error);
+    } catch (error: any) {
+      logger.error("cityCheckJob", {
+        tag: "error",
+        location: "jenkins.services.ts: cityCheckJob",
+        error: error.message,
+      });
+
+      console.log("Error triggering Jenkins job:", error);
       throw error;
     }
   },

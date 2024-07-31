@@ -40,6 +40,7 @@ export const appConfig = (app: Application) => {
               process.env.PRODUCTION_CORS_URL1 || "",
               process.env.PRODUCTION_CORS_URL2 || "",
               process.env.PRODUCTION_CORS_URL3 || "",
+              process.env.PRODUCTION_CORS_URL4 || "",
             ] as (string | boolean | RegExp)[]),
     })
   );
