@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { jenkinsServices } from "../services/jenkins.services";
-import logger from "@/logger/logger";
+import logger from "../logger/logger";
 
 export const jenkinsControllers = {
   cityCheckJob: async (req: Request, res: Response) => {

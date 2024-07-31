@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { scopingServices } from "../services/scoping.services";
-import logger from "@/logger/logger";
+import logger from "../logger/logger";
 
 export const scopingControllers = {
   createConfluencePage: async (req: Request, res: Response) => {

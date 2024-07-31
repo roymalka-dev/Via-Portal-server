@@ -1,4 +1,4 @@
-import { authenticator } from "@/middleware/authenticator";
+import { authenticator } from "../../middleware/authenticator";
 import { scopingControllers } from "../../controllers/scoping.controllers";
 import { EndpointType } from "../../types/routes.types";
 
