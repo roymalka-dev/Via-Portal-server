@@ -8,6 +8,7 @@ import { loggerEndpoints } from "./endpoints/logger.endpoints";
 import { scopingEndpoints } from "./endpoints/scoping.endpoints";
 import { shiftEndpoints } from "./endpoints/shift.endpoints";
 import { jenkinsEndpoints } from "./endpoints/jenkins.endpoints";
+import { jiraEndpoints } from "./endpoints/jira.endpoints";
 
 export const routes: RouteType[] = [
   {
@@ -56,6 +57,12 @@ export const routes: RouteType[] = [
     name: "jenkins",
     path: "/jenkins",
     endpoints: jenkinsEndpoints,
+    middleware: [],
+  },
+  {
+    name: "jira",
+    path: "/jira",
+    endpoints: jiraEndpoints,
     middleware: [],
   },
 ];

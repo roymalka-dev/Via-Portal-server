@@ -100,4 +100,71 @@ export const scopingServices = {
       throw error;
     }
   },
+  async createFromTemplate(
+    templatePageId: number,
+    newPageTitle: string,
+    parentPageId: number,
+    spaceKey: string,
+    placeholders: { [key: string]: string }
+  ): Promise<any> {
+    const config = {
+      auth: {
+        username:
+          process.env.NODE_ENV === "DEV"
+            ? "itsroymalka@icloud.com"
+            : "roy.malka@ridewithvia.com",
+        password:
+          process.env.NODE_ENV === "DEV"
+            ? process.env.CONFLUENCE_API_TOKEN_DEV || ""
+            : process.env.CONFLUENCE_API_TOKEN_PROD || "",
+      },
+    };
+
+    try {
+      // Fetch the template content
+      const templateResponse = await axios.get(
+        process.env.NODE_ENV === "DEV"
+          ? `https://itsroymalka.atlassian.net/wiki/rest/api/content/${templatePageId}?expand=body.storage`
+          : `https://ridewithvia.atlassian.net/wiki/rest/api/content/${templatePageId}?expand=body.storage`,
+        config
+      );
+      let templateContent = templateResponse.data.body.storage.value;
+
+      // Replace placeholders with actual content
+      Object.keys(placeholders).forEach((key) => {
+        const placeholder = `{{${key}}}`;
+        const value = placeholders[key];
+        templateContent = templateContent.replace(
+          new RegExp(placeholder, "g"),
+          value
+        );
+      });
+
+      // Create a new page with the modified content
+      const newPageData = {
+        type: "page",
+        title: newPageTitle,
+        ancestors: [{ id: parentPageId }],
+        space: { key: spaceKey },
+        body: {
+          storage: {
+            value: templateContent,
+            representation: "storage",
+          },
+        },
+      };
+
+      const newPageResponse = await axios.post(
+        process.env.NODE_ENV === "DEV"
+          ? "https://itsroymalka.atlassian.net/wiki/rest/api/content"
+          : "https://ridewithvia.atlassian.net/wiki/rest/api/content",
+        newPageData,
+        config
+      );
+
+      return newPageResponse.data;
+    } catch (error) {
+      throw new Error(`Error creating page from template: ${error}`);
+    }
+  },
 };

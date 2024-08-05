@@ -14,7 +14,7 @@ export const calendars = [
   { name: "Rider iOS", id: "bc0acjloo83o7be4k0td1leamd04cr5s" },
   { name: "Rider Android", id: "2km07349m53gi384ddb5psab3lu12gvv" },
   // { name: "Mobile Flutter", id: "dpqbt2cnvh738qlreflhr17k0imosn7f" },
-  { name: "ACSA", id: "jksgu98rkfht7pqgoh23osiice6lmgg0" },
+  { name: "ACSA", id: "jksgu98rkfht7pqgoh23osiice6lmgg0", default: ["yair cohen"] },
   { name: "Algo Booking", id: "9f7tkh66gnp3t8d50rhvh2u490rqugn7" },
   { name: "Algo Network Planning", id: "k1auko67bhu45v87bmbcaf2vu985ulr1" },
   { name: "Algo Engineering", id: "jb69q3agdk1m1fb5o0dbqea8mo64ai96" },

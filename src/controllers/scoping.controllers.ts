@@ -38,4 +38,32 @@ export const scopingControllers = {
       res.status(500).json({ message: error.message });
     }
   },
+  createFromTemplate: async (req: Request, res: Response) => {
+    const {
+      templatePageId,
+      newPageTitle,
+      parentPageId,
+      spaceKey,
+      placeholders,
+    } = req.body;
+
+    try {
+      const result = await scopingServices.createFromTemplate(
+        templatePageId,
+        newPageTitle,
+        parentPageId,
+        spaceKey,
+        placeholders
+      );
+      res.status(201).json(result);
+    } catch (error: any) {
+      console.log(error);
+      logger.error("createFromTemplate", {
+        tag: "error",
+        location: "scoping.controllers.ts: createFromTemplate",
+        error: req?.session?.user + " " + error.message,
+      });
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
