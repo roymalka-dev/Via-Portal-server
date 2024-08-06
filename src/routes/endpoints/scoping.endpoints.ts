@@ -24,7 +24,7 @@ export const scopingEndpoints: EndpointType[] = [
     method: "post",
     path: "/create-confluence-from-template",
     controller: scopingControllers.createFromTemplate,
-    middleware: [],
-    authority: "PUBLIC",
+    middleware: [authenticator],
+    authority: "USER",
   },
 ];

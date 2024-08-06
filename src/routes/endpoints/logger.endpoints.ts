@@ -1,3 +1,4 @@
+import { authenticator } from "../../middleware/authenticator";
 import { loggerControllers } from "../../controllers/logger.controllers";
 import { EndpointType } from "../../types/routes.types";
 
@@ -7,7 +8,7 @@ export const loggerEndpoints: EndpointType[] = [
     method: "get",
     path: "/get-logs",
     controller: loggerControllers.getLogsByDate,
-    middleware: [],
+    middleware: [authenticator],
     authority: "ADMIN",
   },
 ];

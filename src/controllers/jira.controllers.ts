@@ -20,6 +20,12 @@ export const jiraControllers = {
         res.status(400).json({ message: "name is required" });
         return;
       }
+      if (!parentIssueKey) {
+        res.status(400).json({ message: "parentIssueKey is required" });
+      }
+
+      res.status(201).json({ message: "Test execution is currently disabled" });
+      return;
 
       // Fetch test case IDs based on tags
       const testCaseIds = await jiraServices.getTestCasesWithTags(
